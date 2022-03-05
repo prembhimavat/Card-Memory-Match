@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upmatching</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Life+Savers:wght@700&display=swap" rel="stylesheet"></head>
+    <div class="version">
+        <div class="demo version-section"><a href="https://github.com/prembhimavat/Card-matching-game" class="github-corner">
+            <svg width="80" height="80" viewBox="0 0 250 250" style="fill:rgba(51, 17, 56, 0.8); color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);">
+              <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+              <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+              <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+            </svg></a>
+        </div>
+      </div>
+<body>
+    <div id="ol"> </div>
+    <div style="height: 8px;"></div>
+    <div>
+    <span id="logo">- UPMATCHING -</span>
+    </div>
+
+    <div id="title" style="height: 40px;">
+        <span id="moves"></span>
+        <button id="pause"><i class="fas fa-pause"></i></button>
+        <span id="time"></span>
+        <button type ="button" id="reset"><i class="fas fa-redo"></i></button> 
+    </div>
+
+    <center>
+        <table cellspacing="0" class="tablerow"></table>
+    </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script> 
+    var em = ["💐","🌹","🌻","🏵️","🌺","🌴","🌈","🍓","🍒","🍎","🍉","🍊","🥭","🍍","🍋","🍏","🍐","🥝","🍇","🥥","🍅","🌶️","🍄","🧅","🥦","🥑","🍔","🍕","🧁","🎂","🍬","🍩","🍫","🎈"];
+    var length = 0;
+    //Shuffling above array
+var tmp, c, p = em.length;
+if(p) while(--p) {
+   c = Math.floor(Math.random() * (p + 1));
+   tmp = em[c];
+   em[c] = em[p];
+   em[p] = tmp;
+}
+
+//Variables
+var pre="", pID, ppID=0, turn=0, t="transform", flip="rotateY(180deg)", flipBack="rotateY(0deg)", time, mode;
+
+//Resizing Screen
+window.onresize = init;
+function init() {
+   W = innerWidth;
+   H = innerHeight;
+   $('body').height(H+"px");
+   $('#ol').height(H+"px");
+}
+
+//Showing instructions
+window.onload = function() {
+    $("#ol").html(`<center><div id="inst"><h3>Welcome !</h3>Instructions For Game<br/><br/><li>Make pairs of similiar blocks by flipping them.</li><li>To flip a block you can click on it.</li><li>If two blocks you clicked are not similar, they will be flipped back.</li><p style="font-size:18px;">Click one of the following mode to start the game.</p></div ><button class="easy" onclick="start(3, 4); sound();">Easy</button> <button class="medium" onclick="start(4, 5); sound();">Medium</button><button class="hard" onclick="start(6, 6); sound();">Hard</button><button class="font-effect-fire-animation" onclick="sound();"><a href="/leaderboard">LeaderBoard</a></button></center>`);
+}
+
+//Button Sounds
+var pauseAudio = new Audio("sound/pauseSoundEffect.mp3");
+
+function sound(){
+    var audio = new Audio("sound/mouseClick.mp3"); 
+    audio.play();
+};
+
+
+//Starting the game
+function start(r,l) {
+    //Timer and moves
+    length = l;
+    min=0; sec=0; moves=0;
+    $("#time").html("Time: 00:00");
+    $("#moves").html("Moves: 0");
+
+    var timer = function() {
+        
+      sec++;
+      if(sec==60) {
+          min++; sec=0;
+      }
+      if(sec<10) 
+          $("#time").html("Time: 0"+min+":0"+sec);
+      else 
+        $("#time").html("Time: 0"+min+":"+sec);
+
+    };
+
+    var time = setInterval(timer,1000);
+
+    $("#pause").click(function(){
+        pauseAudio.play();
+        $("#pause").html(`<i class="fas fa-play"></i>`);  
+        clearInterval(time);
+        pauseLeaderBoard();
+        $("#ol").fadeIn(700);
+
+
+        $(".play").click(function(){
+            $("#ol").fadeOut(700);
+            time = setInterval(timer,1000);
+            $("#pause").html(`<i class="fas fa-pause"></i>`);
+            sound();
+        });
+
+    });
+
+    $("#reset").click(function(){
+        sound();
+        min = 0;
+        sec = -1;
+        moves = 0;
+        reStart(r,l);
+    });
+    
+
+    rem=r*l/2, noItems=rem;
+    mode = r+"x"+l;
+    //Generating item array and shuffling it
+    var items = [];
+    for (var i=0;i<noItems;i++)
+        items.push(em[i]);
+    for (var i=0;i<noItems;i++)
+        items.push(em[i]);
+    var tmp, c, p = items.length;
+    if(p) while(--p) {
+        c = Math.floor(Math.random() * (p + 1));
+        tmp = items[c];
+        items[c] = items[p];
+        items[p] = tmp;
+    }
+    
+    //Creating table
+    $(".tablerow").html("");
+    var n=1;
+    for (var i = 1;i<=r;i++) {
+        $(".tablerow").append("<tr>");
+        for (var j = 1;j<=l;j++) {
+           $(".tablerow").append(`<td id='${n}' onclick="change(${n})"><div class='inner'><div class='front'></div><div class='back'><p>${items[n-1]}</p></div></div></td>`);
+           n++;
+
+         }
+         $(".tablerow").append("</tr>");
+    }
+    //Hiding instructions screen
+    $("#ol").fadeOut(500);
+}
+
+
+//pauseLeaderBoard
+function pauseLeaderBoard(){
+    $("#ol").html(`<center><div id="inst1" class="playpause"><h1>Paused !</h1></div><button class="play">Resume</button><button class="play"><a href="/">Reset</a></button></center>`);    
+    clearInterval(time);
+    //<br/><table class = "leaderboardTable"><tr><th>Rank</th><th>Username</th><th>Moves</th><th>Time</th><th>Score</th></tr></table><br/>
+}
+
+//restarting game
+function reStart(r,l){
+    $("#moves").html("Moves: 0");
+
+    $(".tablerow").fadeOut(250);
+
+    //setting rem to og value
+    rem=r*l/2, noItems=rem;
+
+    //shuffling array
+    var items = [];
+    for (var i=0;i<noItems;i++)
+        items.push(em[i]);
+    for (var i=0;i<noItems;i++)
+        items.push(em[i]);
+    var tmp, c, p = items.length;
+    if(p) while(--p) {
+        c = Math.floor(Math.random() * (p + 1));
+        tmp = items[c];
+        items[c] = items[p];
+        items[p] = tmp;
+    }
+
+    //Creating table
+    $(".tablerow").html("");
+    var n=1;
+    for (var i = 1;i<=r;i++) {
+        $(".tablerow").append("<tr>");
+        for (var j = 1;j<=l;j++) {
+        $(".tablerow").append(`<td id='${n}' onclick="change(${n})"><div class='inner'><div class='front'></div><div class='back'><p>${items[n-1]}</p></div></div></td>`);
+        n++;
+
+        }
+        $(".tablerow").append("</tr>");
+    }
+    moves = 0;
+        $(".tablerow").fadeIn(250);
+}
+
+var locked = false;
+//Function for flipping blocks
+function change(x) {
+  //Variables
+  let i = "#"+x+" .inner";
+  let f = "#"+x+" .inner .front";
+  let b = "#"+x+" .inner .back";
+  
+  //Dont flip for these conditions
+  if (turn==2 || $(i).attr("flip")=="block" || ppID==x || locked == true) {}
+  
+  //Flip
+  else {
+      if(!locked){
+        $(i).css(t, flip);
+      }
+    if (turn==1) {
+      //This value will prevent spam clicking
+      turn=2; 
+      
+      //If both flipped blocks are not same
+      if (pre!=$(b).text()) {
+        locked = true;
+         setTimeout(function() {
+            locked = false;
+            $(pID).css(t, flipBack);
+            $(i).css(t, flipBack);
+            ppID=0;
+            //locked == false;
+        },1000);
+      }
+      
+      //If blocks flipped are same
+      else {
+          rem--;
+          console.log(rem);
+          $(i).attr("flip", "block");
+          $(pID).attr("flip", "block");
+      }
+      
+      setTimeout(function() {
+         turn=0;
+         //Increase moves
+         moves++;
+         $("#moves").html("Moves: "+moves);
+      },500);
+      
+    }
+    else {
+      pre = $(b).text();
+      ppID = x;
+      pID = "#"+x+" .inner";
+      turn=1;
+    }
+    
+    //If all pairs are matched
+    if (rem==0) {
+          clearInterval(time);
+          if (min==0) {
+              time = `${sec} seconds`;
+              conversion = sec*100;
+              calculation = 50000 * 100/conversion;
+              calculation1 = calculation/moves;
+              calculation1 += 150;
+              score = (calculation1 | 0);
+          }
+          else {
+              time = `${min} minute(s) and ${sec} second(s)`;
+              conversion = min*60 + sec;
+              conversion1 = conversion*100;
+              calculation = 50000 * 100/conversion1;
+              calculation1 = calculation/moves;
+              calculation1 += 150;
+              score = (calculation1 | 0);
+          }
+          setTimeout(function() {
+              $("#ol").html(`<center><div id="ol"><h1 class="youWin" style="font-size:60px;">You Win!</h1><p style="font-size:30px;">Moves : ${moves} </p><p style="font-size:30px;"> Time : ${time}.</p> <p style="font-size:30px;">Score : ${score}</p> <form action="/" method="post"> <label style="font-size:30px">Enter Leaderboard : </label> <input type="text" name="username" placeholder="Username" autocomplete="off"></input><input type="text" style="display:none" name="score" value=${score}><input type="text" style="display:none" name="moves" value=${moves}><input type="text" style="display:none" name="min" value=${min}><input type="text" style="display:none" name="sec" value=${sec}><input type="text" style="display:none" name="mode" value=${length}><button class="go" type="submit">GO</button></form><br/><button class="playagain"><a href="/">Play Again ?</a></button></center>`);
+              $("#ol").fadeIn(750);
+        }, 1500);
+    }
+  }
+}
+           
+    </script>
+</body>
+</html>
