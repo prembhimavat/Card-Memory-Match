@@ -16,7 +16,7 @@ body {
     background-image: linear-gradient(to bottom, #4481eb 0%, #04bedd 100%); */
     font-size: 20px;
 
-    background-image: url("images/image1.jpeg");
+    background-image: url("/images/image1.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -38,7 +38,7 @@ td {
     width:70px;
     text-align: center;
     vertical-align: middle;
-  
+    
 }
 td, .inner, .front, .back {
     border-radius: 4px;
@@ -55,7 +55,11 @@ table{
 
 .leaderboardTable{
     margin-top: 10px;
-    width : 75%;
+    width:75%;
+}
+
+.leaderboardTable td{
+    height: 50px;
 }
 
 @media(max-width: 900px){

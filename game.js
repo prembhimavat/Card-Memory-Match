@@ -9,7 +9,8 @@ app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/LeadBoard");
+mongoose.connect("mongodb+srv://admin-prem:Godthegreat%401@cluster0.mxpup.mongodb.net/leaderboard");
+mongodb://localhost:27017/LeadBoard
 var conn = mongoose.connection;
 conn.on('connected', function() {
     console.log('database is connected successfully');
@@ -60,7 +61,7 @@ app.get("/leaderboard", function(req,res){
     res.render("leaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 })
 
 app.get("/mediumleaderboard", function(req,res){
@@ -68,7 +69,7 @@ app.get("/mediumleaderboard", function(req,res){
     res.render("mediumleaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 });
 
 app.get("/hardleaderboard", function(req,res){
@@ -76,7 +77,7 @@ app.get("/hardleaderboard", function(req,res){
     res.render("hardleaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 })
   
 app.listen(process.env.PORT || 3000, function() {
