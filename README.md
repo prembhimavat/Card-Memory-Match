@@ -55,7 +55,8 @@ Memory Game, also known as the Concentration card game or Matching Game, is a si
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## How to play
+### How to play
+
 Try to match the cards with its respective pair with as few moves as possible.
 - Reveal cards by clicking on them
 - Only two cards can be revealed at a time
