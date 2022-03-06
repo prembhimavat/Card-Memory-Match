@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-prem:Godthegreat%401@cluster0.mxpup.mongodb.net/leaderboard");
+mongoose.connect("mongodb://localhost:27017/leadboard");
 mongodb://localhost:27017/LeadBoard
 var conn = mongoose.connection;
 conn.on('connected', function() {
