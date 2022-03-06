@@ -60,7 +60,7 @@ app.get("/leaderboard", function(req,res){
     res.render("leaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 })
 
 app.get("/mediumleaderboard", function(req,res){
@@ -68,7 +68,7 @@ app.get("/mediumleaderboard", function(req,res){
     res.render("mediumleaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 });
 
 app.get("/hardleaderboard", function(req,res){
@@ -76,7 +76,7 @@ app.get("/hardleaderboard", function(req,res){
     res.render("hardleaderboard",{
       leaderboards : element
     });
-  }).sort({userscore:-1}).limit(3);
+  }).sort({userscore:-1}).limit(5);
 })
   
 app.listen(process.env.PORT || 3000, function() {
