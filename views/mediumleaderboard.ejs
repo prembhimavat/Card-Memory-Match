@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Matching Game</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/styles.css">
-=======
-    <link rel="stylesheet" href="styles.css">
->>>>>>> 36a3ebb42afa258cc752a889175e0f7087c8047b
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
@@ -22,12 +18,12 @@
         <% var counter = 0 %>
         <center>
             <div id="inst1">
-                <h1>LeaderBoard !</h1>
+                <h1 style="color:#fff;">LeaderBoard !</h1>
             </div>
             <br/>
-            <button class="easy"><a href="/leaderboard">Easy</a></button> 
-            <button class="medium"><a href="/mediumleaderboard">Medium</a></button>
-            <button class="hard"><a href="/hardleaderboard">Hard</a></button><br/>
+            <button class="easy"><a style="color:rgb(24, 194, 24);" href="/leaderboard">Easy</a></button> 
+            <button class="medium"><a style="color:rgb(255, 255, 45);" href="/mediumleaderboard">Medium</a></button>
+            <button class="hard"><a style="color:rgb(255, 50, 50);" href="/hardleaderboard">Hard</a></button><br/>
             <table class = "leaderboardTable">
                 <tr>
                     <th>Rank</th>
@@ -45,8 +41,8 @@
                         <td><%= item.userscore %></td>
                     </tr>
                 <% }); %>
-            </table
-            ><br/>
+            </table>
+            <br/>
             <button class="playagain">
                 <a href="/">Play Game</a>
             </button>
