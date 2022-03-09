@@ -24,7 +24,7 @@ $('#ol').height(H+"px");
 
 //Showing instructions
 window.onload = function() {
-$("#ol").html(`<center><div id="inst"><h3>Welcome !</h3>Instructions For Game<br/><br/><li>Make pairs of similiar blocks by flipping them.</li><li>To flip a block you can click on it.</li><li>If two blocks you clicked are not similar, they will be flipped back.</li><p style="font-size:18px;">Click one of the following mode to start the game.</p></div ><button class="easy" onclick="start(3, 4);">Easy</button> <button class="medium" onclick="start(4, 5);">Medium</button><button class="hard" onclick="start(6, 6);">Hard</button><button class="font-effect-fire-animation"><a href="/leaderboard">LeaderBoard</a></button></center>`);
+$("#ol").html(`<center><div id="inst"><h3>Welcome !</h3>Instructions For Game<br/><br/><li>Make pairs of similiar blocks by flipping them.</li><li>To flip a block you can click on it.</li><li>If two blocks you clicked are not similar, they will be flipped back.</li><li>Top 5 best players from each mode will be displayed on Leaderboard.</li><p style="font-size:18px;">Click one of the following mode to start the game.</p></div ><button class="easy" onclick="start(3, 4);">Easy</button> <button class="medium" onclick="start(4, 5);">Medium</button><button class="hard" onclick="start(6, 6);">Hard</button><button class="font-effect-fire-animation"><a href="/leaderboard">LeaderBoard</a></button></center>`);
 }
 
 //Button Sounds
@@ -113,7 +113,7 @@ $("#ol").fadeOut(500);
 
 //pauseLeaderBoard
 function pauseLeaderBoard(){
-$("#ol").html(`<center><div id="inst1" class="playpause"><h1>Paused !</h1></div><button class="play">Resume</button><button class="play"><a href="/">Reset</a></button></center>`);    
+$("#ol").html(`<center><div id="inst1" class="playpause"><h1>Paused !</h1></div><button class="play">Resume</button><a href="/"><button class="play">Reset</button></a></center>`);    
 clearInterval(time);
 //<br/><table class = "leaderboardTable"><tr><th>Rank</th><th>Username</th><th>Moves</th><th>Time</th><th>Score</th></tr></table><br/>
 }

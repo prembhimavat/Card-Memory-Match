@@ -11,11 +11,7 @@ html {
 }
 body {
     margin: 0px;
-    /* background-image: -webkit-gradient(linear, left top, left bottom, from(#4481eb), to(#04bedd)); 
-    background-image: -o-linear-gradient(top, #4481eb 0%, #04bedd 100%); 
-    background-image: linear-gradient(to bottom, #4481eb 0%, #04bedd 100%); */
     font-size: 20px;
-
     background-image: url("/images/image1.jpeg");
     background-repeat: no-repeat;
     background-position: center;
@@ -86,8 +82,7 @@ input{
     background-color: rgba(51, 17, 56, 0.8);
     text-align: center;
     margin-top:16vh;
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 0.2px solid #ffff; 
     border-radius: 10px;
     padding: 5px;
@@ -98,8 +93,7 @@ input{
     text-align: center;
     background-color: rgba(51, 17, 56, 0.8);
     margin-top: 5vh;
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 0.2px solid #ffff;
     border-radius: 10px;
 }
@@ -117,21 +111,17 @@ input{
     height:100vh;
     width:100vw;
     color: white;
-    -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     z-index:2;
     
 }
 
 .easy{
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: rgb(24, 194, 24);
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:100px;
     font-size:20px;
     padding:5px;
@@ -140,13 +130,10 @@ input{
 
 .medium{
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: rgb(255, 255, 45);
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:100px;
     font-size:20px;
     padding:5px;
@@ -155,13 +142,10 @@ input{
 
 .hard{
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: rgb(255, 50, 50);
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:100px;
     font-size:20px;
     padding:5px;
@@ -171,14 +155,11 @@ input{
 .font-effect-fire-animation{
     font-family: Rancho;
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width: auto;
-    font-size:27px;
+    font-size:20px;
     padding: 5px; 
     outline: none;
 } 
@@ -203,13 +184,10 @@ input{
 
 .play{
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: white;
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:100px;
     font-size:18px;
     padding:5px;
@@ -218,13 +196,10 @@ input{
 
 .playagain{
     background-color: rgba(51, 17, 56, 0.7);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: white;
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:150px;
     font-size:18px;
     padding:5px;
@@ -235,13 +210,10 @@ input{
 }
 .go{
     background-color: rgba(255,255,255,0.2);
-    -webkit-backdrop-filter: (20px);
-    backdrop-filter: (20px);
     color: white;
     margin: 5px;
     border: 0.1px solid #ffff;
     border-radius: 10px;
-    font-weight: smaller;
     width:60px;
     font-size:18px;
     padding:5px;
