@@ -113,10 +113,16 @@ $("#ol").fadeOut(500);
 
 //pauseLeaderBoard
 function pauseLeaderBoard(){
-$("#ol").html(`<center><div id="inst1" class="playpause"><h1>Paused !</h1></div><button class="play">Resume</button><a href="/"><button class="play">Reset</button></a></center>`);    
-clearInterval(time);
-//<br/><table class = "leaderboardTable"><tr><th>Rank</th><th>Username</th><th>Moves</th><th>Time</th><th>Score</th></tr></table><br/>
+    if (min==0) {
+        time = `${sec} seconds`;
+    } else {
+        time = `${min} minute(s) and ${sec} second(s)`;
+    }
+    $("#ol").html(`<center><div id="ol"><h1 class="youWin" style="font-size:60px; padding-top:60px;">Game Paused!</h1><p style="font-size:30px;">Moves : ${moves} </p><p style="font-size:30px;"> Time Taken: ${time}</p><button class="play">Resume</button><a href="/"><button class="play">Menu</button></a> </div></center>`);    
+    clearInterval(time);
 }
+
+
 
 //restarting game
 function reStart(r,l){
